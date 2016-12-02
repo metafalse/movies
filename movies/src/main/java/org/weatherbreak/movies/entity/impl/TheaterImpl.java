@@ -1,6 +1,8 @@
 package org.weatherbreak.movies.entity.impl;
 
-public class TheaterImpl {
+import org.weatherbreak.movies.entity.Theater;
+
+public class TheaterImpl implements Theater {
 
     private long id;
 

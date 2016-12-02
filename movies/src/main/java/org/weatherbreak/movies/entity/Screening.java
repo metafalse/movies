@@ -1,8 +1,5 @@
 package org.weatherbreak.movies.entity;
 
-import org.weatherbreak.movies.entity.impl.MovieImpl;
-import org.weatherbreak.movies.entity.impl.TheaterImpl;
-
 import java.util.Date;
 
 public interface Screening {
@@ -11,7 +8,7 @@ public interface Screening {
 
     Date getShowTime();
 
-    MovieImpl getMovie();
+    Movie getMovie();
 
-    TheaterImpl getTheater();
+    Theater getTheater();
 }

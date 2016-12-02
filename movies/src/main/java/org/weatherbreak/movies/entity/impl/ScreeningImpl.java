@@ -1,22 +1,26 @@
 package org.weatherbreak.movies.entity.impl;
 
+import org.weatherbreak.movies.entity.Movie;
+import org.weatherbreak.movies.entity.Screening;
+import org.weatherbreak.movies.entity.Theater;
+
 import java.util.Date;
 
-public class ScreeningImpl {
+public class ScreeningImpl implements Screening {
 
     private long id;
 
     private Date showTime;
 
-    private MovieImpl movieImpl;
+    private Movie movie;
 
-    private TheaterImpl theaterImpl;
+    private Theater theater;
 
-    public ScreeningImpl(long id, Date showTime, MovieImpl movieImpl, TheaterImpl theaterImpl) {
+    public ScreeningImpl(long id, Date showTime, Movie movie, Theater theater) {
         this.id = id;
         this.showTime = showTime;
-        this.movieImpl = movieImpl;
-        this.theaterImpl = theaterImpl;
+        this.movie = movie;
+        this.theater = theater;
     }
 
     public long getId() {
@@ -27,11 +31,11 @@ public class ScreeningImpl {
         return showTime;
     }
 
-    public MovieImpl getMovieImpl() {
-        return movieImpl;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public TheaterImpl getTheaterImpl() {
-        return theaterImpl;
+    public Theater getTheater() {
+        return theater;
     }
 }

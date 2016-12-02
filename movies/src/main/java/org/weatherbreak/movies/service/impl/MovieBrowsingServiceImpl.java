@@ -1,6 +1,9 @@
 package org.weatherbreak.movies.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.weatherbreak.movies.entity.Movie;
+import org.weatherbreak.movies.entity.Screening;
+import org.weatherbreak.movies.entity.Theater;
 import org.weatherbreak.movies.entity.impl.MovieImpl;
 import org.weatherbreak.movies.entity.impl.ScreeningImpl;
 import org.weatherbreak.movies.entity.impl.TheaterImpl;
@@ -15,25 +18,25 @@ import java.util.List;
 @Service
 public class MovieBrowsingServiceImpl implements MovieBrowsingService {
 
-    private List<MovieImpl> movieImpls;
-    private List<TheaterImpl> theaterImpls;
-    private List<ScreeningImpl> screeningImpls;
+    private List<Movie> movies;
+    private List<Theater> theaters;
+    private List<Screening> screenings;
 
     public MovieBrowsingServiceImpl() {
-        MovieImpl et      = new MovieImpl(1, "E.T. the Extra-Terrestrial");
-        MovieImpl titanic = new MovieImpl(2, "Titanic");
-        MovieImpl shining = new MovieImpl(3, "The Shining");
+        Movie et      = new MovieImpl(1, "E.T. the Extra-Terrestrial");
+        Movie titanic = new MovieImpl(2, "Titanic");
+        Movie shining = new MovieImpl(3, "The Shining");
 
-        TheaterImpl sf = new TheaterImpl(1, "San Francisco theater");
-        TheaterImpl sj = new TheaterImpl(2, "San Jose theater");
-        TheaterImpl dc = new TheaterImpl(3, "Daly City theater");
+        Theater sf = new TheaterImpl(1, "San Francisco theater");
+        Theater sj = new TheaterImpl(2, "San Jose theater");
+        Theater dc = new TheaterImpl(3, "Daly City theater");
 
-        movieImpls = Arrays.asList(et, titanic, shining);
-        theaterImpls = Arrays.asList(sf, sj, dc);
+        movies = Arrays.asList(et, titanic, shining);
+        theaters = Arrays.asList(sf, sj, dc);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
         try {
-            screeningImpls = Arrays.asList(
+            screenings = Arrays.asList(
                 new ScreeningImpl(1, sdf.parse("2016-12-24 11:11:11"), et, sf),
                 new ScreeningImpl(2, sdf.parse("2016-12-25 12:12:12"), et, sj),
                 new ScreeningImpl(3, sdf.parse("2016-12-26 13:13:13"), titanic, sj)
@@ -43,46 +46,46 @@ public class MovieBrowsingServiceImpl implements MovieBrowsingService {
         }
     }
 
-    public List<MovieImpl> getMovies() {
-        return movieImpls;
+    public List<Movie> getMovies() {
+        return movies;
     }
 
-    public List<MovieImpl> getMoviesByName(String name) {
-        List<MovieImpl> result = new ArrayList<>();
-        for (MovieImpl movieImpl : movieImpls) {
-            if (movieImpl.getName().contains(name))
-                result.add(movieImpl);
+    public List<Movie> getMoviesByName(String name) {
+        List<Movie> result = new ArrayList<>();
+        for (Movie movie : movies) {
+            if (movie.getName().contains(name))
+                result.add(movie);
         }
         return result;
     }
 
-    public List<MovieImpl> getMoviesByTheaterId(long id) {
-        List<MovieImpl> result = new ArrayList<>();
-        for (ScreeningImpl screeningImpl : screeningImpls) {
-            if (screeningImpl.getTheaterImpl().getId() == id)
-                result.add(screeningImpl.getMovieImpl());
+    public List<Movie> getMoviesByTheaterId(long id) {
+        List<Movie> result = new ArrayList<>();
+        for (Screening screening : screenings) {
+            if (screening.getTheater().getId() == id)
+                result.add(screening.getMovie());
         }
         return result;
     }
 
-    public List<TheaterImpl> getTheaters() {
-        return theaterImpls;
+    public List<Theater> getTheaters() {
+        return theaters;
     }
 
-    public List<TheaterImpl> getTheatersByName(String name) {
-        List<TheaterImpl> result = new ArrayList<>();
-        for (TheaterImpl theaterImpl : theaterImpls) {
-            if (theaterImpl.getName().contains(name))
-                result.add(theaterImpl);
+    public List<Theater> getTheatersByName(String name) {
+        List<Theater> result = new ArrayList<>();
+        for (Theater theater : theaters) {
+            if (theater.getName().contains(name))
+                result.add(theater);
         }
         return result;
     }
 
-    public List<TheaterImpl> getTheatersByMovieId(long id) {
-        List<TheaterImpl> result = new ArrayList<>();
-        for (ScreeningImpl screeningImpl : screeningImpls) {
-            if (screeningImpl.getMovieImpl().getId() == id)
-                result.add(screeningImpl.getTheaterImpl());
+    public List<Theater> getTheatersByMovieId(long id) {
+        List<Theater> result = new ArrayList<>();
+        for (Screening screening : screenings) {
+            if (screening.getMovie().getId() == id)
+                result.add(screening.getTheater());
         }
         return result;
     }
