@@ -1,14 +1,16 @@
 package org.weatherbreak.movies.entity.impl;
 
-import org.weatherbreak.movies.entity.Movie;
+import org.weatherbreak.movies.entity.User;
 
-public class MovieImpl implements Movie {
+public class UserImpl implements User {
 
     private long id;
 
     private String name;
 
-    public MovieImpl(long id, String name) {
+    private String password;
+
+    public UserImpl(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -19,5 +21,9 @@ public class MovieImpl implements Movie {
 
     public String getName() {
         return name;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

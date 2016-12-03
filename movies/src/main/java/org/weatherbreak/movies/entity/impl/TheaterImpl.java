@@ -19,5 +19,5 @@ public class TheaterImpl implements Theater {
 
     public String getName() {
         return name;
-    };
+    }
 }
