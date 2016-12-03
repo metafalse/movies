@@ -39,6 +39,9 @@ public class TestMovieBrowsingService extends AbstractJUnit4SpringContextTests {
         Assert.assertEquals("Titanic", titanicAndShining.get(0).getName());
         Assert.assertEquals(3, titanicAndShining.get(1).getId());
         Assert.assertEquals("The Shining", titanicAndShining.get(1).getName());
+
+        List<Movie> notFound = movieBrowsingService.getMoviesByName("Kin-dza-dza!");
+        Assert.assertEquals(0, notFound.size());
     }
 
     @Test
@@ -52,6 +55,9 @@ public class TestMovieBrowsingService extends AbstractJUnit4SpringContextTests {
         Assert.assertEquals("E.T. the Extra-Terrestrial", etAndTitanic.get(0).getName());
         Assert.assertEquals(2, etAndTitanic.get(1).getId());
         Assert.assertEquals("Titanic", etAndTitanic.get(1).getName());
+
+        List<Movie> notFound = movieBrowsingService.getMoviesByTheaterId(3);
+        Assert.assertEquals(0, notFound.size());
     }
 
     @Test
@@ -78,6 +84,9 @@ public class TestMovieBrowsingService extends AbstractJUnit4SpringContextTests {
         Theater dc = movieBrowsingService.getTheatersByName("City").get(0);
         Assert.assertEquals(3, dc.getId());
         Assert.assertEquals("Daly City theater", dc.getName());
+
+        List<Theater> notFound = movieBrowsingService.getTheatersByName("Antarctic");
+        Assert.assertEquals(0, notFound.size());
     }
 
     @Test
@@ -91,5 +100,8 @@ public class TestMovieBrowsingService extends AbstractJUnit4SpringContextTests {
         Theater sj = movieBrowsingService.getTheatersByMovieId(2).get(0);
         Assert.assertEquals(2, sj.getId());
         Assert.assertEquals("San Jose theater", sj.getName());
+
+        List<Theater> notFound = movieBrowsingService.getTheatersByMovieId(3);
+        Assert.assertEquals(0, notFound.size());
     }
 }
