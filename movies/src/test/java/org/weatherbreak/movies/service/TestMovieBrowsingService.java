@@ -104,4 +104,50 @@ public class TestMovieBrowsingService extends AbstractJUnit4SpringContextTests {
         List<Theater> notFound = movieBrowsingService.getTheatersByMovieId(3);
         Assert.assertEquals(0, notFound.size());
     }
+    /*
+
+    @Test
+    public void getTheaters() {
+        List<Theater> theaters = movieBrowsingService.getTheaters();
+        Assert.assertEquals(1, theaters.get(0).getId());
+        Assert.assertEquals("San Francisco theater", theaters.get(0).getName());
+
+        Assert.assertEquals(2, theaters.get(1).getId());
+        Assert.assertEquals("San Jose theater", theaters.get(1).getName());
+
+        Assert.assertEquals(3, theaters.get(2).getId());
+        Assert.assertEquals("Daly City theater", theaters.get(2).getName());
+    }
+
+    @Test
+    public void getTheatersByName() {
+        List<Theater> sfAndSj = movieBrowsingService.getTheatersByName("San");
+        Assert.assertEquals(1, sfAndSj.get(0).getId());
+        Assert.assertEquals("San Francisco theater", sfAndSj.get(0).getName());
+        Assert.assertEquals(2, sfAndSj.get(1).getId());
+        Assert.assertEquals("San Jose theater", sfAndSj.get(1).getName());
+
+        Theater dc = movieBrowsingService.getTheatersByName("City").get(0);
+        Assert.assertEquals(3, dc.getId());
+        Assert.assertEquals("Daly City theater", dc.getName());
+
+        List<Theater> notFound = movieBrowsingService.getTheatersByName("Antarctic");
+        Assert.assertEquals(0, notFound.size());
+    }
+
+    @Test
+    public void getTheatersByMovieId() {
+        List<Theater> sfAndSj = movieBrowsingService.getTheatersByMovieId(1);
+        Assert.assertEquals(1, sfAndSj.get(0).getId());
+        Assert.assertEquals("San Francisco theater", sfAndSj.get(0).getName());
+        Assert.assertEquals(2, sfAndSj.get(1).getId());
+        Assert.assertEquals("San Jose theater", sfAndSj.get(1).getName());
+
+        Theater sj = movieBrowsingService.getTheatersByMovieId(2).get(0);
+        Assert.assertEquals(2, sj.getId());
+        Assert.assertEquals("San Jose theater", sj.getName());
+
+        List<Theater> notFound = movieBrowsingService.getTheatersByMovieId(3);
+        Assert.assertEquals(0, notFound.size());
+    }*/
 }

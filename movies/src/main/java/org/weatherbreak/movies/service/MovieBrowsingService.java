@@ -9,13 +9,13 @@ public interface MovieBrowsingService {
 
     List<Movie> getMovies();
 
-    List<Movie> getMoviesByName(String name);
+    List<Movie> getMoviesByName(String movieName);
 
-    List<Movie> getMoviesByTheaterId(long id);
+    List<Movie> getMoviesByTheaterId(long theaterId);
 
     List<Theater> getTheaters();
 
-    List<Theater> getTheatersByName(String name);
+    List<Theater> getTheatersByName(String theaterName);
 
-    List<Theater> getTheatersByMovieId(long id);
+    List<Theater> getTheatersByMovieId(long movieId);
 }

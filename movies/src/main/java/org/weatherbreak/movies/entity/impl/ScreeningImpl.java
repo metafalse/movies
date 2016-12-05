@@ -4,37 +4,47 @@ import org.weatherbreak.movies.entity.Movie;
 import org.weatherbreak.movies.entity.Screening;
 import org.weatherbreak.movies.entity.Theater;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="screenings")
 public class ScreeningImpl implements Screening {
-
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
-    private Date showTime;
-
+    @ManyToOne(targetEntity=MovieImpl.class)
+    @JoinColumn(name="movies_id")
     private Movie movie;
 
+    @ManyToOne(targetEntity=TheaterImpl.class)
+    @JoinColumn(name="theaters_id")
     private Theater theater;
 
-    public ScreeningImpl(long id, Date showTime, Movie movie, Theater theater) {
-        this.id = id;
-        this.showTime = showTime;
-        this.movie = movie;
-        this.theater = theater;
+    @Column(name="showtime")
+    private Date showtime;
+
+    public ScreeningImpl() {
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public Date getShowTime() {
-        return showTime;
+        return showtime;
     }
 
+    @Override
     public Movie getMovie() {
         return movie;
     }
 
+    @Override
     public Theater getTheater() {
         return theater;
     }
