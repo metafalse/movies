@@ -27,4 +27,13 @@ public class TheaterImpl implements Theater {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "TheaterImpl [id = " + id + ", name = " + name + "]";
+    }
 }

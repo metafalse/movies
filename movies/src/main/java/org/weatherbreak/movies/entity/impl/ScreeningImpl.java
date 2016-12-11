@@ -35,17 +35,35 @@ public class ScreeningImpl implements Screening {
     }
 
     @Override
-    public Date getShowTime() {
-        return showtime;
-    }
-
-    @Override
     public Movie getMovie() {
         return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     @Override
     public Theater getTheater() {
         return theater;
+    }
+
+    public void setTheater(Theater theater) {
+        this.theater = theater;
+    }
+
+    @Override
+    public Date getShowtime() {
+        return showtime;
+    }
+
+    public void setShowtime(Date showtime) {
+        this.showtime = showtime;
+    }
+
+    @Override
+    public String toString() {
+        return "ScreeningImpl [id = " + id + ", movie = " + movie
+            + ", theater = " + theater + ", showtime = " + showtime + "]";
     }
 }

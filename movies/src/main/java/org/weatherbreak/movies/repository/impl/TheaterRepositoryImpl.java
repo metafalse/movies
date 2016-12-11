@@ -17,6 +17,16 @@ public class TheaterRepositoryImpl implements TheaterRepository {
     private SessionFactory sessionFactory;
 
     @Override
+    public long addTheater(Theater theater) {
+        return (Long) this.sessionFactory.getCurrentSession().save(theater);
+    }
+
+    @Override
+    public Theater getTheater(long theaterId) {
+        return (Theater) this.sessionFactory.getCurrentSession().get(TheaterImpl.class, theaterId);
+    }
+
+    @Override
     public List<Theater> getTheaters() {
         Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(TheaterImpl.class);
         List<Theater> theaters = crit.list();

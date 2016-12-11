@@ -6,9 +6,9 @@ public interface Screening {
 
     long getId();
 
-    Date getShowTime();
-
     Movie getMovie();
 
     Theater getTheater();
+
+    Date getShowtime();
 }

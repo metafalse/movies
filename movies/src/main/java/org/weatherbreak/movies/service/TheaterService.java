@@ -1,17 +1,14 @@
 package org.weatherbreak.movies.service;
 
-import org.weatherbreak.movies.entity.Movie;
 import org.weatherbreak.movies.entity.Theater;
 
 import java.util.List;
 
-public interface MovieBrowsingService {
+public interface TheaterService {
 
-    List<Movie> getMovies();
+    Theater addTheater(Theater theater);
 
-    List<Movie> getMoviesByName(String movieName);
-
-    List<Movie> getMoviesByTheaterId(long theaterId);
+    Theater getTheater(long theaterId);
 
     List<Theater> getTheaters();
 

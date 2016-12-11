@@ -17,6 +17,31 @@ public class ScreeningRepositoryImpl implements ScreeningRepository {
     private SessionFactory sessionFactory;
 
     @Override
+    public long addScreening(Screening screening) {
+        return (Long) this.sessionFactory.getCurrentSession().save(screening);
+    }
+
+    @Override
+    public Screening getScreening(long screeningId) {
+        return (Screening) this.sessionFactory.getCurrentSession().get(ScreeningImpl.class, screeningId);
+    }
+
+    @Override
+    public List<Screening> getScreenings() {
+        Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(ScreeningImpl.class);
+        List<Screening> screenings = crit.list();
+        return screenings;
+    }
+
+    @Override
+    public List<Screening> getScreeningsByMovieId(long movieId) {
+        Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(ScreeningImpl.class)
+                .add(Restrictions.eq("movie.id", movieId));
+        List<Screening> screenings = crit.list();
+        return screenings;
+    }
+
+    @Override
     public List<Screening> getScreeningsByTheaterId(long theaterId) {
         Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(ScreeningImpl.class)
             .add(Restrictions.eq("theater.id", theaterId));
@@ -25,9 +50,10 @@ public class ScreeningRepositoryImpl implements ScreeningRepository {
     }
 
     @Override
-    public List<Screening> getScreeningsByMovieId(long movieId) {
+    public List<Screening> getScreeningsByMovieIdAndTheaterId(long movieId, long theaterId) {
         Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(ScreeningImpl.class)
-            .add(Restrictions.eq("movie.id", movieId));
+            .add(Restrictions.eq("movie.id", movieId))
+            .add(Restrictions.eq("theater.id", theaterId));
         List<Screening> screenings = crit.list();
         return screenings;
     }

@@ -12,7 +12,9 @@
 
     <context:annotation-config />
     <context:component-scan base-package="org.weatherbreak" />
-    <context:property-placeholder location="properties/database.properties" />
+    <context:property-placeholder location="classpath:properties/database.properties" />
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -22,11 +24,20 @@
         <property name="password" value="${jdbc.password}" />
     </bean>
 
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
-        <!-- List each entity or scan <property name="annotatedClasses"> <list>
-            <value>com.irahul.tbtf.entity.impl</value> </list> </property> -->
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <!-- List each entity or scan
+        <property name="annotatedClasses">
+            <list>
+                <value>com.irahul.tbtf.entity.impl</value>
+            </list>
+        </property> -->
         <property name="packagesToScan">
             <list>
                 <value>org.weatherbreak.movies.entity.impl</value>
@@ -42,12 +53,5 @@
 
         <property name="dataSource" ref="dataSource" />
     </bean>
-
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

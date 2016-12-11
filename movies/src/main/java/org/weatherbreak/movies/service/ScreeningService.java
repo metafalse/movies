@@ -1,12 +1,12 @@
-package org.weatherbreak.movies.repository;
+package org.weatherbreak.movies.service;
 
 import org.weatherbreak.movies.entity.Screening;
 
 import java.util.List;
 
-public interface ScreeningRepository {
+public interface ScreeningService {
 
-    long addScreening(Screening screening);
+    Screening addScreening(Screening screening);
 
     Screening getScreening(long screeningId);
 

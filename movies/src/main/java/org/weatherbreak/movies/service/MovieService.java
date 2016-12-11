@@ -1,16 +1,18 @@
-package org.weatherbreak.movies.repository;
+package org.weatherbreak.movies.service;
 
 import org.weatherbreak.movies.entity.Movie;
 
 import java.util.List;
 
-public interface MovieRepository {
+public interface MovieService {
 
-    long addMovie(Movie movie);
+    Movie addMovie(Movie movie);
 
     Movie getMovie(long movieId);
 
     List<Movie> getMovies();
 
     List<Movie> getMoviesByName(String movieName);
+
+    List<Movie> getMoviesByTheaterId(long theaterId);
 }
