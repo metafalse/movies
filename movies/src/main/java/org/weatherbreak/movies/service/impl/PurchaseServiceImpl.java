@@ -34,7 +34,7 @@ public class PurchaseServiceImpl implements PurchaseService {
             throw new InvalidFieldException("screening is required");
         }
 
-        if (StringUtils.isEmpty(purchase.getNumber()) || purchase.getNumber() > MAX_NUMBER) {
+        if (purchase.getNumber() == 0 || purchase.getNumber() > MAX_NUMBER) {
             throw new InvalidFieldException("number is invalid");
         }
 

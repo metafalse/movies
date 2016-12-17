@@ -1,6 +1,8 @@
 package org.weatherbreak.movies.service.impl;
 
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,21 +27,22 @@ public class UserServiceImpl implements UserService {
     private static final int MAX_NAME_LENGTH = 45;
     private static final int MAX_PASSWORD_LENGTH = 10;
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private UserRepository userRepository;
 
     @Override
     @Transactional
     public User addUser(User user) {
-        if (StringUtils.isEmpty(user.getPassword()) || user.getPassword().length() > MAX_PASSWORD_LENGTH) {
-            throw new InvalidFieldException("password is invalid");
-        }
-
         if (StringUtils.isEmpty(user.getName()) || user.getName().length() > MAX_NAME_LENGTH) {
             throw new InvalidFieldException("name is invalid");
         }
 
-        //let us hash the pin - TBTF bank does basic MD5
+        if (StringUtils.isEmpty(user.getPassword()) || user.getPassword().length() > MAX_PASSWORD_LENGTH) {
+            throw new InvalidFieldException("password is invalid");
+        }
+
         UserImpl impl = (UserImpl) user;
         impl.setPassword(md5base64(user.getPassword()));
         long id =  userRepository.addUser(user);
@@ -93,7 +96,7 @@ public class UserServiceImpl implements UserService {
             byte[] digest = md.digest(password.getBytes("UTF-8"));
             return Base64.encodeBase64String(digest);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            // logger.error("failed to md5",e);
+            logger.error("failed to md5",e);
         }
 
         throw new IllegalArgumentException("Server fail");

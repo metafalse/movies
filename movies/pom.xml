@@ -151,7 +151,7 @@
                 <version>2.2</version>
                 <configuration>
                     <!-- http port -->
-                    <port>8080</port>
+                    <port>8081</port>
                     <!-- application path always starts with / -->
                     <path>/</path>
                     <useTestClasspath>false</useTestClasspath>
