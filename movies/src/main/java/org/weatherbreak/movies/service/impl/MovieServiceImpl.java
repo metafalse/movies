@@ -14,6 +14,7 @@ import org.weatherbreak.movies.service.exception.InvalidFieldException;
 import org.weatherbreak.movies.service.exception.MoviesException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -67,6 +68,10 @@ public class MovieServiceImpl implements MovieService {
         for (Screening screening : screenings) {
             movies.add(screening.getMovie());
         }
-        return movies;
+        HashSet<Movie> hashSet = new HashSet<>();
+        hashSet.addAll(movies);
+        List<Movie> uniqueList = new ArrayList<>();
+        uniqueList.addAll(hashSet);
+        return uniqueList;
     }
 }
